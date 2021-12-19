@@ -1,0 +1,20 @@
+可用startwith代替animal_kind
+startwith喵汪
+
+使用者傳以下資料
+animal_kind
+animal_sex
+animal_place
+animal_colour
+animal_bodytype
+
+回傳符合條件的前五筆資料
+卡片含:
+
+動物照片 album_file
+animal_id
+animal_remark
+網站
+收容所地址、電話 shelter_address shelter_tel
+google map
+

@@ -1,0 +1,42 @@
+// bot.listen('/', process.env.PORT || 3000, () => {
+//   console.log('機器人啟動')
+// })
+
+// bot.on('message', async (event) => {
+//   if (event.message.type === 'text') {
+//     try {
+//       const { data } = await axios.get('https://data.coa.gov.tw/Service/OpenData/TransService.aspx?UnitId=QcbUEzN6E6DL')
+//       for (const info of data) {
+//         if (info.animal_subid === event.message.text) {
+//           event.reply(info.shelter_name)
+//           return
+//         }
+//       }
+//       event.replay('找不到')
+//     } catch (error) {
+//       console.log(error)
+//       event.reply('錯誤')
+//     }
+//   }
+// })
+
+// if (event.message.text.startsWith('!flex')) {
+//   flex(event)
+
+//   // bot.on('message', event => {
+// //   if (event.message.type === 'text') {
+// //     event.reply(event.message.text)
+// //   }
+// // })
+
+// // import flex from './commands/flex.js'
+// // flex深淺層複製 0928  const flex = JSON.parse(JSON.stringify())
+
+// // https://developers.line.biz/zh-hant/docs/messaging-api/flex-message-elements/#container
+// // https://developers.line.biz/flex-simulator/
+// // https://developers.line.biz/console/channel/1656653418/messaging-api
+// // https://ithelp.ithome.com.tw/articles/10229719
+// // line postbackaction
+// // https://data.gov.tw/dataset/85903
+// // https://data.gov.tw/dataset/134284  公立收容所
+// // https://data.gov.tw/dataset/8705 獸醫師

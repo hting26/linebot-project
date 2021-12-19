@@ -14,33 +14,31 @@ const bot = linebot({
 bot.listen('/', process.env.PORT || 3000, () => {
   console.log('機器人啟動')
 })
-// const search = []
-// const datatest = []
 
-const animalKind = []
-const animalSex = []
-const bodytype = []
 bot.on('message', async (event) => {
+  const results = []
+  const animalKind = []
+  const animalSex = []
+  const bodytype = []
   if (event.message.type === 'text') {
     if ((event.message.text === '貓') || (event.message.text === '狗')) {
       event.reply(findsex)
-      animalKind.splice(0, 1, event.message.text)
+      animalKind.push(event.message.text)
       // const animalKind = (event.message.text)
       console.log(animalKind[0])
     }
     if ((event.message.text === '都可以') || (event.message.text === 'M') || (event.message.text === 'F')) {
       event.reply(findBodytype)
-      animalSex.splice(0, 1, event.message.text)
+      animalSex.push(event.message.text)
       // const animalSex = (event.message.text)
       console.log(animalSex[0])
     }
     if ((event.message.text === '都可以') || (event.message.text === 'BIG') || (event.message.text === 'MEDIUM') || (event.message.text === 'SMALL')) {
       // const bodytype = (event.message.text)
-      bodytype.splice(0, 1, event.message.text)
+      bodytype.push(event.message.text)
       console.log(bodytype[0])
     }
     try {
-      const results = []
       const { data } = await axios.get('https://data.coa.gov.tw/Service/OpenData/TransService.aspx?UnitId=QcbUEzN6E6DL')
       for (const info of data) {
         if ((animalKind[0] === info.animal_kind) && (animalSex[0] === info.animal_sex) && (bodytype[0] === info.animal_bodytype)) {
