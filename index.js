@@ -49,9 +49,9 @@ bot.on('message', async (event) => {
             break
           }
         }
-      } console.log(results)
-      if (results.length > 0) {
+      } if (results.length > 0) {
         event.reply(results)
+        console.log(results)
       }
     } catch (error) {
       console.log(error)
