@@ -1,4 +1,4 @@
-import template from '../template/flextemplate.js'
+import template from '../template/carousel-flex.js'
 import index from '..index/'
 export default async (event) => {
   const flex = JSON.parse(JSON.stringify(template))

@@ -1,9 +1,11 @@
 import 'dotenv/config'
 import linebot from 'linebot'
 import axios from 'axios'
-// import test from './test.js'
-import findsex from './findSex.js'
-import findBodytype from './findBodytype.js'
+import findSex from './commands/findSex.js'
+import findBodytype from './commands/findBodytype.js'
+import './data/shelterData.js'
+import findLocation from './commands/findLocation.js'
+// import flex from './commands/flex.js'
 
 const bot = linebot({
   channelId: process.env.CHANNEL_ID,
@@ -21,9 +23,15 @@ const animalKind = []
 const animalSex = []
 const bodytype = []
 bot.on('message', async (event) => {
+  if (event.message.text === '開始') {
+    event.reply(findLocation)
+  }
+  // if (event.message.text === 'location') {
+  //   event.reply(returnShelter)
+  // }
   if (event.message.type === 'text') {
     if ((event.message.text === '貓') || (event.message.text === '狗')) {
-      event.reply(findsex)
+      event.reply(findSex)
       animalKind.splice(0, 1, event.message.text)
       // const animalKind = (event.message.text)
       console.log(animalKind[0])
@@ -52,6 +60,7 @@ bot.on('message', async (event) => {
       } if (results.length > 0) {
         event.reply(results)
         console.log(results)
+        // console.log(shelterData[0].ShelterName)
       }
     } catch (error) {
       console.log(error)

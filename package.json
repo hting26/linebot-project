@@ -22,7 +22,8 @@
   "dependencies": {
     "axios": "^0.24.0",
     "dotenv": "^10.0.0",
-    "linebot": "^1.6.1"
+    "linebot": "^1.6.1",
+    "node-schedule": "^2.1.0"
   },
   "devDependencies": {
     "eslint": "^7.32.0",

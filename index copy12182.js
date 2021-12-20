@@ -2,8 +2,8 @@ import 'dotenv/config'
 import linebot from 'linebot'
 import axios from 'axios'
 // import test from './test.js'
-import findsex from './findSex.js'
-import findBodytype from './findBodytype.js'
+import findsex from './commands/findSex.js'
+import findBodytype from './commands/findBodytype.js'
 
 const bot = linebot({
   channelId: process.env.CHANNEL_ID,

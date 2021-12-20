@@ -1,6 +1,6 @@
 export default {
   type: 'text',
-  text: '請選擇要搜尋的收容所',
+  text: '請點選傳送位置後，選擇一間收容所',
   quickReply: {
     items: [
       {
@@ -12,7 +12,6 @@ export default {
       },
       {
         type: 'action',
-        imageUrl: 'https://xxx/image1.png',
         action: {
           type: 'message',
           label: 'A.台北',
@@ -21,7 +20,6 @@ export default {
       },
       {
         type: 'action',
-        imageUrl: 'https://xxx/image2.png',
         action: {
           type: 'message',
           label: 'B.台中',
