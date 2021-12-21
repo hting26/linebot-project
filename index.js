@@ -19,10 +19,12 @@ bot.listen('/', process.env.PORT || 3000, () => {
 // const search = []
 // const datatest = []
 
+// const eventData = [{ userID: , kind: , sex: }] push
 const animalKind = []
 const animalSex = []
 const bodytype = []
 bot.on('message', async (event) => {
+  console.log(event)
   if (event.message.text === '開始') {
     event.reply(findLocation)
   }
@@ -74,38 +76,3 @@ bot.on('message', async (event) => {
   }
 }
 )
-//     try {
-//       const { data } = await axios.get('https://data.coa.gov.tw/Service/OpenData/TransService.aspx?UnitId=QcbUEzN6E6DL')
-//       for (const info of data) {
-//         if (event.message.text === '喵') {
-//           const findKind = '貓'
-//           event.reply(findsex)
-//           console.log(findKind)
-//           results.push(
-//             info.shelter_name
-//           )
-//           datatest.push(
-//             info.animal_area_pkid
-//           )
-//           event.reply(test)
-//           if (datatest.length >= 15) {
-//             break
-//           }
-//           console.log(datatest)
-//           console.log(results)
-//           if (results.length >= 5) {
-//             break
-//           }
-//         }
-//       }
-//       if (results.length > 0) {
-//         event.reply(results)
-//       } else {
-//         event.reply('找不到')
-//       }
-//     } catch (error) {
-//       console.log(error)
-//       event.reply('錯誤')
-//     }
-//   }
-// })
