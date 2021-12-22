@@ -5,7 +5,7 @@ import findSex from './commands/findSex.js'
 import findBodytype from './commands/findBodytype.js'
 import './data/shelterData.js'
 import findLocation from './commands/findLocation.js'
-// import flex from './commands/flex.js'
+import flex from './commands/flex.js'
 
 const bot = linebot({
   channelId: process.env.CHANNEL_ID,
@@ -16,15 +16,14 @@ const bot = linebot({
 bot.listen('/', process.env.PORT || 3000, () => {
   console.log('機器人啟動')
 })
-// const search = []
-// const datatest = []
 
-// const eventData = [{ userID: , kind: , sex: }] push
+// const eventData = [{ userId: '', animalKind: '', animalSex: '', bodytype: '' }]
+// push
 const animalKind = []
 const animalSex = []
 const bodytype = []
 bot.on('message', async (event) => {
-  console.log(event)
+  // console.log(event)
   if (event.message.text === '開始') {
     event.reply(findLocation)
   }
@@ -60,8 +59,10 @@ bot.on('message', async (event) => {
           }
         }
       } if (results.length > 0) {
-        event.reply(results)
-        console.log(results)
+        // event.reply(results)
+        // console.log(results)
+        flex(event)
+        console.log(flex(event))
         // console.log(shelterData[0].ShelterName)
       }
     } catch (error) {
