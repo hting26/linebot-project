@@ -17,7 +17,7 @@ bot.listen('/', process.env.PORT || 3000, () => {
   console.log('機器人啟動')
 })
 
-// const eventData = [{ userId: '', animalKind: '', animalSex: '', bodytype: '' }]
+// const eventData = [{ userId: '', animalKind: '', animalSex: '', bodytype: '', shelter:'' }]
 // push
 const animalKind = []
 const animalSex = []
@@ -34,17 +34,14 @@ bot.on('message', async (event) => {
     if ((event.message.text === '貓') || (event.message.text === '狗')) {
       event.reply(findSex)
       animalKind.splice(0, 1, event.message.text)
-      // const animalKind = (event.message.text)
       console.log(animalKind[0])
     }
     if ((event.message.text === '都可以') || (event.message.text === 'M') || (event.message.text === 'F')) {
       event.reply(findBodytype)
       animalSex.splice(0, 1, event.message.text)
-      // const animalSex = (event.message.text)
       console.log(animalSex[0])
     }
     if ((event.message.text === '都可以') || (event.message.text === 'BIG') || (event.message.text === 'MEDIUM') || (event.message.text === 'SMALL')) {
-      // const bodytype = (event.message.text)
       bodytype.splice(0, 1, event.message.text)
       console.log(bodytype[0])
     }

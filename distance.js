@@ -3,7 +3,7 @@
 // lat2 點 2 的緯度
 // lon2 點 2 的經度
 // unit 單位，不傳是英里，K 是公里，N 是海里
-const distance = (lat1, lon1, lat2, lon2, unit) => {
+export const distance = (lat1, lon1, lat2, lon2, unit) => {
   if ((lat1 === lat2) && (lon1 === lon2)) {
     return 0
   } else {
@@ -18,8 +18,8 @@ const distance = (lat1, lon1, lat2, lon2, unit) => {
     dist = Math.acos(dist)
     dist = dist * 180 / Math.PI
     dist = dist * 60 * 1.1515
-    if (unit == 'K') { dist = dist * 1.609344 }
-    if (unit == 'N') { dist = dist * 0.8684 }
+    if (unit === 'K') { dist = dist * 1.609344 }
+    if (unit === 'N') { dist = dist * 0.8684 }
     return dist
   }
 }
