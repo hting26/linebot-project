@@ -6,6 +6,7 @@ import findBodytype from './commands/findBodytype.js'
 import './data/shelterData.js'
 import findLocation from './commands/findLocation.js'
 import flex from './commands/flex.js'
+import returnShelter from './returnShelter.js'
 
 const bot = linebot({
   channelId: process.env.CHANNEL_ID,
@@ -27,9 +28,9 @@ bot.on('message', async (event) => {
   if (event.message.text === '開始') {
     event.reply(findLocation)
   }
-  // if (event.message.text === 'location') {
-  //   event.reply(returnShelter)
-  // }
+  if (event.message.text === 'location') {
+    event.reply(returnShelter)
+  }
   if (event.message.type === 'text') {
     if ((event.message.text === '貓') || (event.message.text === '狗')) {
       event.reply(findSex)
