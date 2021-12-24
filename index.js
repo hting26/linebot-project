@@ -24,11 +24,18 @@ const animalSex = []
 const bodytype = []
 bot.on('message', async (event) => {
   console.log(event)
-  if (event.message.text === '開始') {
-    if (event.source.userId !== eventData.userId) {
-      eventData.push({ userId: '', animalKind: '', animalSex: '', bodytype: '', shelter: '' })
+  for (let i = 0; i < eventData.length; i++) {
+    if (event.message.text === '開始') {
+      if (event.source.userId !== eventData.userId) {
+        eventData.push({ userId: event.source.userId })
+        console.log(eventData)
+      } else if (event.source.userId === eventData.userId) {
+        if ((event.message.text === '貓') || (event.message.text === '狗')) {
+          eventData[i].animalKind = event.message.text
+        }
+      }
+      event.reply(findLocation)
     }
-    event.reply(findLocation)
   }
   if (event.message.type === 'location') {
     returnShelter(event)
