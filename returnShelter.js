@@ -6,7 +6,7 @@ export default (event) => {
   const myLatitude = event.message.latitude
   const myLongitude = event.message.longitude
 
-  let minDistanceData = []
+  const minDistanceData = []
 
   const shelterFlex = JSON.parse(JSON.stringify(template))
 
@@ -14,10 +14,9 @@ export default (event) => {
     const Lon = shelterData[i].Lon
     const Lat = shelterData[i].Lat
 
-    // 資料的Name  => 我的是ShelterName
     if (i < 5) {
       minDistanceData.push({
-        Name: shelterData[i].Name,
+        Name: shelterData[i].ShelterName,
         index: i,
         distance: distance(myLatitude, myLongitude, Lat, Lon, 'K')
       })
@@ -26,7 +25,7 @@ export default (event) => {
       if (distance(myLatitude, myLongitude, Lat, Lon, 'K') < minDistanceData[4].distance) {
         minDistanceData.pop()
         minDistanceData.push({
-          Name: shelterData[i].Name,
+          Name: shelterData[i].ShelterName,
           index: i,
           distance: distance(myLatitude, myLongitude, Lat, Lon, 'K')
         })
@@ -34,9 +33,6 @@ export default (event) => {
       }
     }
   }
-
-  // 去除過遠球場
-  minDistanceData = minDistanceData.filter((item) => item.distance < 15)
 
   if (minDistanceData.length !== 0) {
     for (let i = 0; i < minDistanceData.length; i++) {
@@ -130,8 +126,8 @@ export default (event) => {
     }
     console.log(minDistanceData)
 
-    event.reply([shelterFlex, '請點選您想去的球場'])
+    event.reply(shelterFlex)
   } else {
-    event.reply('附近沒有球場')
+    event.reply('附近沒有收容所')
   }
 }

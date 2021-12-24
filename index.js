@@ -18,18 +18,21 @@ bot.listen('/', process.env.PORT || 3000, () => {
   console.log('機器人啟動')
 })
 
-// const eventData = [{ userId: '', animalKind: '', animalSex: '', bodytype: '', shelter:'' }]
-// push
+const eventData = [{ userId: '', animalKind: '', animalSex: '', bodytype: '', shelter: '' }]
 const animalKind = []
 const animalSex = []
 const bodytype = []
 bot.on('message', async (event) => {
-  // console.log(event)
+  console.log(event)
   if (event.message.text === '開始') {
+    if (event.source.userId !== eventData.userId) {
+      eventData.push({ userId: '', animalKind: '', animalSex: '', bodytype: '', shelter: '' })
+    }
     event.reply(findLocation)
   }
-  if (event.message.text === 'location') {
-    event.reply(returnShelter)
+  if (event.message.type === 'location') {
+    returnShelter(event)
+    event.reply('hello')
   }
   if (event.message.type === 'text') {
     if ((event.message.text === '貓') || (event.message.text === '狗')) {
@@ -61,7 +64,6 @@ bot.on('message', async (event) => {
         // console.log(results)
         flex(event)
         console.log(flex(event))
-        // console.log(shelterData[0].ShelterName)
       }
     } catch (error) {
       console.log(error)

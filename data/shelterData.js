@@ -3,7 +3,7 @@ import schedule from 'node-schedule'
 export let shelterData = []
 
 // 更新資料的 function
-const getData = () => {
+const getshelterData = () => {
   axios.get('https://data.coa.gov.tw/Service/OpenData/TransService.aspx?UnitId=2thVboChxuKs')
     .then(response => {
       shelterData = response.shelterData
@@ -12,7 +12,7 @@ const getData = () => {
 }
 
 // 機器人啟動時先更新資料
-getData()
+getshelterData()
 
 // 設定排程每月20號 0:30 更新
-schedule.scheduleJob('30 0 20 * *', getData)
+schedule.scheduleJob('30 0 20 * *', getshelterData)
