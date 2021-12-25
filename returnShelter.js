@@ -126,7 +126,7 @@ export default (event) => {
     }
     console.log(minDistanceData)
 
-    event.reply(shelterFlex)
+    event.reply([shelterFlex, '請點選您想去的收容所'])
   } else {
     event.reply('附近沒有收容所')
   }

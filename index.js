@@ -3,10 +3,12 @@ import linebot from 'linebot'
 import axios from 'axios'
 import findSex from './commands/findSex.js'
 import findBodytype from './commands/findBodytype.js'
-import './data/shelterData.js'
+// import './data/shelterData.js'
 import findLocation from './commands/findLocation.js'
 import flex from './commands/flex.js'
 import returnShelter from './returnShelter.js'
+// import { shelterData } from './data/shelterData.js'
+// import { placeData } from './data/placeData.js'
 
 const bot = linebot({
   channelId: process.env.CHANNEL_ID,
@@ -24,7 +26,8 @@ const animalSex = []
 const bodytype = []
 bot.on('message', async (event) => {
   console.log(event)
-  for (let i = 0; i < eventData.length; i++) {
+  // if (event.message.text === '安') { console.log(shelterData) }
+  for (let i = 0; i < 1; i++) {
     if (event.message.text === '開始') {
       if (event.source.userId !== eventData.userId) {
         eventData.push({ userId: event.source.userId })
