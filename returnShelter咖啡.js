@@ -9,7 +9,6 @@ export default (event) => {
   const minDistanceData = []
 
   const shelterFlex = JSON.parse(JSON.stringify(template))
-  // const quickReply =
 
   for (let i = 0; i < shelterData.length; i++) {
     const Lon = shelterData[i].Lon
@@ -61,12 +60,11 @@ export default (event) => {
                     {
                       type: 'text',
                       contents: [],
-                      size: 'md',
+                      size: 'sm',
                       wrap: true,
                       text: shelterData[minDistanceData[i].index].ShelterName,
-                      color: '#5c5c5c',
-                      weight: 'bold',
-                      align: 'start'
+                      color: '#ffffff',
+                      weight: 'bold'
                     }
                   ],
                   spacing: 'sm'
@@ -84,8 +82,8 @@ export default (event) => {
                           contents: [],
                           size: 'sm',
                           wrap: true,
-                          margin: 'md',
-                          color: '#5c5c5c',
+                          margin: 'sm',
+                          color: '#ffffffde',
                           text: `地址： ${shelterData[minDistanceData[i].index].Address}`
                         },
                         {
@@ -93,45 +91,43 @@ export default (event) => {
                           contents: [],
                           size: 'sm',
                           wrap: true,
-                          margin: 'md',
-                          color: '#5c5c5c',
+                          margin: 'sm',
+                          color: '#ffffffde',
                           text: `開放時間： ${shelterData[minDistanceData[i].index].OpenTime}`
                         },
                         {
                           type: 'text',
                           contents: [],
-                          size: 'xs',
+                          size: 'sm',
                           wrap: true,
-                          margin: 'md',
-                          color: '#5c5c5c',
+                          margin: 'sm',
+                          color: '#ffffffde',
                           text: `距離: 約${Math.round((minDistanceData[i].distance + Number.EPSILON) * 100) / 100}公里`
-                        },
-                        {
-                          type: 'button',
-                          action: {
-                            type: 'message',
-                            label: '選擇',
-                            text: shelterData[minDistanceData[i].index].ShelterName
-                          },
-                          margin: 'md',
-                          style: 'primary',
-                          color: '#b5927f'
                         }
                       ]
                     }
                   ],
-                  paddingAll: 'none',
-                  margin: 'sm'
+                  paddingAll: '13px',
+                  margin: 'md',
+                  backgroundColor: '#ffffff1A'
                 }
               ]
             }
           ],
-          paddingAll: '15px'
+          paddingAll: '15px',
+          backgroundColor: '#7d6352',
+          action: {
+            type: 'postback',
+            label: 'action',
+            data: 'hello'
+          }
         }
       })
     }
     console.log(minDistanceData)
 
-    event.reply(['請選擇一間想搜尋的收容所', shelterFlex])
+    event.reply([shelterFlex, '請點選您想去的收容所'])
+  } else {
+    event.reply('附近沒有收容所')
   }
 }

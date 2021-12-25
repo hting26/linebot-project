@@ -3,12 +3,10 @@ import linebot from 'linebot'
 import axios from 'axios'
 import findSex from './commands/findSex.js'
 import findBodytype from './commands/findBodytype.js'
-// import './data/shelterData.js'
 import findLocation from './commands/findLocation.js'
 import flex from './commands/flex.js'
 import returnShelter from './returnShelter.js'
 // import { shelterData } from './data/shelterData.js'
-// import { placeData } from './data/placeData.js'
 
 const bot = linebot({
   channelId: process.env.CHANNEL_ID,
@@ -79,11 +77,6 @@ bot.on('message', async (event) => {
       console.log(error)
       event.reply('錯誤')
     }
-    // const animalSex = event.message.text
-    // console.log(animalSex)
-    // event.reply(findBodytype)
-    // const bodytype = event.message.text
-    // console.log(bodytype)
   }
 }
 )
