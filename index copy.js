@@ -20,16 +20,27 @@ bot.listen('/', process.env.PORT || 3000, () => {
 
 const eventData = []
 // const eventData = [{ userId: '', animalKind: '', animalSex: '', bodytype: '', shelter: '' }]
-const animalKind = []
-const animalSex = []
-const bodytype = []
+// const animalKind = []
+// const animalSex = []
+// const bodytype = []
 
 bot.on('message', async (event) => {
   console.log(event)
+  // console.log(eventData)
+  // if (event.message.text === '開始找貓') {
+  //   if (event.source.userId !== eventData.userId) {
+  //     eventData.push({ userId: event.source.userId })
+  //     console.log(eventData)
+  //   } else if (event.source.userId === eventData.userId) {
+  //     if ((event.message.text === '貓') || (event.message.text === '狗')) {
+  //       eventData[i].animalKind = event.message.text
+  //     }
+  //   }
+  // }
+  // if (event.message.type === 'text') {
   if ((event.message.text === '貓') || (event.message.text === '狗')) {
-    const userid = event.source.userId
-    
     event.reply(findLocation)
+    eventData.push(event.source.userId = { animalKind: event.message.text })
     // eventData.push({ userId: event.source.userId, animalKind: event.message.text })
     // console.log(eventData)
   }
@@ -38,6 +49,9 @@ bot.on('message', async (event) => {
   }
   if (event.message.type === 'text') {
     if (event.message.text.startsWith('找')) {
+      if (event.source.userId === eventData.index) {
+        eventData.index = event.source.userId.Shelter = event.message.text.replace('找', '')
+      }
       // eventData.push({ userId: event.source.userId, Shelter: event.message.text.replace('找', '') })
       // console.log(eventData)
       event.reply(findSex)
@@ -45,11 +59,13 @@ bot.on('message', async (event) => {
   }
   if ((event.message.text === '都可以') || (event.message.text === 'M') || (event.message.text === 'F')) {
     event.reply(findBodytype)
+    eventData.push({ userId: event.source.userId, animalSex: event.message.text })
     // console.log(eventData)
     // animalSex.splice(0, 1, event.message.text)
     // console.log(animalSex[0])
   }
   if ((event.message.text === '都可以') || (event.message.text === 'BIG') || (event.message.text === 'MEDIUM') || (event.message.text === 'SMALL')) {
+    eventData.push({ userId: event.source.userId, bodytype: event.message.text })
     console.log(eventData)
     // bodytype.splice(0, 1, event.message.text)
     // console.log(bodytype[0])
@@ -58,11 +74,14 @@ bot.on('message', async (event) => {
     const results = []
     const { data } = await axios.get('https://data.coa.gov.tw/Service/OpenData/TransService.aspx?UnitId=QcbUEzN6E6DL')
     for (const info of data) {
-      // console.log(user.animalKind)
-      if ((animalKind[0] === info.animal_kind) && (animalSex[0] === info.animal_sex) && (bodytype[0] === info.animal_bodytype)) {
-        results.push(info.animal_subid)
-        if (results.length >= 5) {
-          break
+      for (const user of eventData) {
+        // console.log(user.animalKind)
+        // if ((animalKind[0] === info.animal_kind) && (animalSex[0] === info.animal_sex) && (bodytype[0] === info.animal_bodytype)) {
+        if ((user.animalKind === info.animal_kind) && (user.animalSex === info.animal_sex) && (user.bodytype === info.animal_bodytype)) {
+          results.push(info.animal_subid)
+          if (results.length >= 5) {
+            break
+          }
         }
       }
     } if (results.length > 0) {
@@ -75,5 +94,6 @@ bot.on('message', async (event) => {
     console.log(error)
     event.reply('錯誤')
   }
+  // }
 }
 )

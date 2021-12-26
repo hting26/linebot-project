@@ -1,6 +1,6 @@
 export default {
   type: 'text',
-  text: '請點選傳送位置後，選擇一間收容所',
+  text: '請點選傳送位置，系統會回覆五間最近的收容所',
   quickReply: {
     items: [
       {
