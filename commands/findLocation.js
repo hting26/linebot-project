@@ -9,23 +9,24 @@ export default {
           type: 'location',
           label: '傳送位置'
         }
-      },
-      {
-        type: 'action',
-        action: {
-          type: 'message',
-          label: 'A.台北',
-          text: '台北'
-        }
-      },
-      {
-        type: 'action',
-        action: {
-          type: 'message',
-          label: 'B.台中',
-          text: '台中'
-        }
       }
+      // ,
+      // {
+      //   type: 'action',
+      //   action: {
+      //     type: 'message',
+      //     label: 'A.台北',
+      //     text: '台北'
+      //   }
+      // },
+      // {
+      //   type: 'action',
+      //   action: {
+      //     type: 'message',
+      //     label: 'B.台中',
+      //     text: '台中'
+      //   }
+      // }
     ]
   }
 }

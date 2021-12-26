@@ -7,7 +7,7 @@ const getshelterData = () => {
   axios.get('https://data.coa.gov.tw/Service/OpenData/TransService.aspx?UnitId=2thVboChxuKs')
     .then(response => {
       shelterData = response.data
-      console.log('資料成功更新')
+      console.log('shelter資料成功更新')
     })
 }
 

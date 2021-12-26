@@ -1,6 +1,6 @@
 export default {
   type: 'text',
-  text: '你想找的體型?',
+  text: '你想找的動物體型?',
   quickReply: {
     items: [
       {

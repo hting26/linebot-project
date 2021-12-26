@@ -1,84 +1,149 @@
 export default {
-  type: 'carousel',
-  contents: [
-    {
-      type: 'bubble',
-      hero: {
-        type: 'image',
-        size: 'full',
-        aspectRatio: '20:13',
-        aspectMode: 'cover',
-        url: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_5_carousel.png'
+  type: 'bubble',
+  size: 'kilo',
+  hero: {
+    type: 'image',
+    url: 'https://asms.coa.gov.tw/amlapp/Upload/Pic/48e78994-9787-4aa2-824e-4d1e1c4b8ed7_org.jpg',
+    size: 'full',
+    aspectMode: 'cover',
+    action: {
+      type: 'uri',
+      uri: 'https://asms.coa.gov.tw/amlapp/Upload/Pic/48e78994-9787-4aa2-824e-4d1e1c4b8ed7_org.jpg'
+    },
+    aspectRatio: '20:17'
+  },
+  body: {
+    type: 'box',
+    layout: 'vertical',
+    contents: [
+      {
+        type: 'text',
+        text: '收容編號：animal_subid',
+        weight: 'bold',
+        size: 'md',
+        wrap: true
       },
-      body: {
+      {
         type: 'box',
         layout: 'vertical',
+        margin: 'lg',
         spacing: 'sm',
         contents: [
           {
-            type: 'text',
-            text: 'shelter_name',
-            wrap: true,
-            weight: 'bold',
-            size: 'xl'
-          },
-          {
             type: 'box',
             layout: 'baseline',
+            spacing: 'sm',
             contents: [
               {
                 type: 'text',
-                text: 'animal_colour',
-                wrap: true,
-                weight: 'bold',
-                size: 'lg',
-                flex: 0
+                text: '性別',
+                color: '#aaaaaa',
+                size: 'sm',
+                flex: 1
               },
               {
                 type: 'text',
                 text: 'animal_sex',
                 wrap: true,
-                weight: 'bold',
-                size: 'lg',
-                margin: 'xl'
+                color: '#666666',
+                size: 'sm',
+                flex: 5
               }
             ]
           },
           {
-            type: 'text',
-            text: 'animal_subid'
+            type: 'box',
+            layout: 'baseline',
+            spacing: 'sm',
+            contents: [
+              {
+                type: 'text',
+                text: '體型',
+                color: '#aaaaaa',
+                size: 'sm',
+                flex: 1
+              },
+              {
+                type: 'text',
+                text: 'animal_bodytype',
+                wrap: true,
+                color: '#666666',
+                size: 'sm',
+                flex: 5
+              }
+            ]
           },
           {
-            type: 'text',
-            text: 'animal_remark'
-          }
-        ]
-      },
-      footer: {
-        type: 'box',
-        layout: 'vertical',
-        spacing: 'sm',
-        contents: [
-          {
-            type: 'button',
-            style: 'primary',
-            action: {
-              type: 'uri',
-              label: 'Call shelter_tel',
-              uri: 'https://linecorp.com'
-            }
+            type: 'box',
+            layout: 'baseline',
+            spacing: 'sm',
+            contents: [
+              {
+                type: 'text',
+                text: '花色',
+                color: '#aaaaaa',
+                size: 'sm',
+                flex: 1
+              },
+              {
+                type: 'text',
+                text: 'animal_colour',
+                wrap: true,
+                color: '#666666',
+                size: 'sm',
+                flex: 5
+              }
+            ]
           },
           {
-            type: 'button',
-            action: {
-              type: 'uri',
-              label: 'To website',
-              uri: 'https://linecorp.com'
-            },
-            style: 'secondary'
+            type: 'box',
+            layout: 'baseline',
+            spacing: 'sm',
+            contents: [
+              {
+                type: 'text',
+                text: '狀態描述',
+                color: '#aaaaaa',
+                size: 'sm',
+                flex: 2
+              },
+              {
+                type: 'text',
+                text: 'animal_remark晶片入所後施打 晶片入所後施打，超級親人會呼嚕',
+                wrap: true,
+                color: '#666666',
+                size: 'sm',
+                flex: 5
+              }
+            ]
           }
         ]
       }
+    ],
+    paddingBottom: '6px'
+  },
+  footer: {
+    type: 'box',
+    layout: 'vertical',
+    spacing: 'none',
+    contents: [
+      {
+        type: 'button',
+        style: 'primary',
+        action: {
+          type: 'uri',
+          label: 'WEBSITE',
+          uri: 'https://linecorp.com'
+        },
+        height: 'sm',
+        color: '#b5927f'
+      }
+    ],
+    flex: 0
+  },
+  styles: {
+    footer: {
+      separator: false
     }
-  ]
+  }
 }
