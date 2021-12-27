@@ -6,6 +6,7 @@ import findBodytype from './commands/findBodytype.js'
 import findLocation from './commands/findLocation.js'
 import returnShelter from './returnShelter.js'
 import template from './template/flex.js'
+// import fs from 'fs'
 
 const bot = linebot({
   channelId: process.env.CHANNEL_ID,
@@ -27,7 +28,6 @@ bot.on('message', async (event) => {
     event.reply(findLocation)
     eventData[event.source.userId] = { animalKind: event.message.text, shelter: '', animalSex: '', bodytype: '' }
   }
-
   // 回傳五間Shelter
   if (event.message.type === 'location') {
     returnShelter(event)
@@ -56,7 +56,7 @@ bot.on('message', async (event) => {
     const results = []
     const { data } = await axios.get('https://data.coa.gov.tw/Service/OpenData/TransService.aspx?UnitId=QcbUEzN6E6DL')
     for (const info of data) {
-      if ((eventData[event.source.userId].animalKind === info.animal_kind) && (eventData[event.source.userId].animalSex === info.animal_sex) && (eventData[event.source.userId].bodytype === info.animal_bodytype) && (eventData[event.source.userId].shelter === info.shelter_name)) {
+      if ((eventData[event.source.userId]?.animalKind === info.animal_kind) && (eventData[event.source.userId]?.animalSex === info.animal_sex) && (eventData[event.source.userId]?.bodytype === info.animal_bodytype) && (eventData[event.source.userId]?.shelter === info.shelter_name)) {
         results.push(info.animal_subid)
         flexTemplate.contents.contents.push({
           type: 'bubble',
@@ -169,7 +169,7 @@ bot.on('message', async (event) => {
                       },
                       {
                         type: 'text',
-                        text: info.animal_remark,
+                        text: info.animal_remark || '-',
                         wrap: true,
                         color: '#666666',
                         size: 'sm',
@@ -193,7 +193,7 @@ bot.on('message', async (event) => {
                 action: {
                   type: 'uri',
                   label: 'WEBSITE',
-                  uri: `https://asms.coa.gov.tw/amlapp/App/AnnounceList.aspx?Id=${info.animal_id}&AcceptNum=${info.animal_subid.replace(' ', '%20')}&PageType=Adopt`
+                  uri: encodeURI(`https://asms.coa.gov.tw/amlapp/App/AnnounceList.aspx?Id=${info.animal_id}&AcceptNum=${info.animal_subid}&PageType=Adopt`)
                 },
                 height: 'sm',
                 color: '#b5927f'
@@ -211,10 +211,12 @@ bot.on('message', async (event) => {
           break
         }
       }
-    } if (results.length > 0) {
+    }
+    if (results.length > 0) {
       event.reply(flexTemplate)
+      // fs.writeFileSync('aaa.json', JSON.stringify(flexTemplate, null, 2))
       console.log(results)
-      // console.log(flexTemplate)
+      console.log(flexTemplate)
       delete eventData[event.source.userId]
     } else {
       event.reply('找不到')
