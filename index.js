@@ -17,55 +17,46 @@ bot.listen('/', process.env.PORT || 3000, () => {
   console.log('機器人啟動')
 })
 
-const eventData = []
+const eventData = {}
 // const eventData = [{ userId: '', animalKind: '', animalSex: '', bodytype: '', shelter: '' }]
-const animalKind = []
-const animalSex = []
-const bodyType = []
-const shelter = []
 
 bot.on('message', async (event) => {
+  // const userid = event.source.userId
   console.log(event)
-  // 使用者傳送搜尋物種
+  // 1.使用者傳送搜尋物種
   if ((event.message.text === '貓') || (event.message.text === '狗')) {
-    // const userid = event.source.userId
     // 請使用者傳送位置
     event.reply(findLocation)
-    // eventData.push({ userId: event.source.userId, animalKind: event.message.text })
-    animalKind.splice(0, 1, event.message.text)
-    console.log(animalKind[0])
+    eventData[event.source.userId] = { animalKind: event.message.text, shelter: '', animalSex: '', bodytype: '' }
   }
-  // 使用者傳送傳送位置後，回傳五間Shelter
+
+  // 回傳五間Shelter
   if (event.message.type === 'location') {
     returnShelter(event)
   }
-  // 使用者選擇Shelter後，請使用者選性別
+
+  // 2.使用者選擇Shelter後，請使用者選性別
   if (event.message.type === 'text') {
     if (event.message.text.startsWith('找')) {
-      // eventData.push({ userId: event.source.userId, Shelter: event.message.text.replace('找', '') })
       event.reply(findSex)
-      shelter.splice(0, 1, event.message.text.replace('找', ''))
-      console.log(shelter[0])
+      eventData[event.source.userId].shelter = event.message.text.replace('找', '')
     }
   }
-  // 使用者選擇性別後，請使用者選體型
+
+  // 3.使用者選擇性別後，請使用者選體型
   if ((event.message.text === '不限') || (event.message.text === 'M') || (event.message.text === 'F')) {
     event.reply(findBodytype)
-    // console.log(eventData)
-    animalSex.splice(0, 1, event.message.text)
-    console.log(animalSex[0])
   }
+
   if ((event.message.text === '都可以') || (event.message.text === 'BIG') || (event.message.text === 'MEDIUM') || (event.message.text === 'SMALL')) {
     console.log(eventData)
-    bodyType.splice(0, 1, event.message.text)
-    console.log(bodyType[0])
   }
   try {
     const flexTemplate = JSON.parse(JSON.stringify(template))
     const results = []
     const { data } = await axios.get('https://data.coa.gov.tw/Service/OpenData/TransService.aspx?UnitId=QcbUEzN6E6DL')
     for (const info of data) {
-      if ((animalKind[0] === info.animal_kind) && (animalSex[0] === info.animal_sex) && (bodyType[0] === info.animal_bodytype) && (shelter[0] === info.shelter_name)) {
+      if ((eventData[event.source.userId].animalKind === info.animal_kind) && (animalSex[0] === info.animal_sex) && (bodyType[0] === info.animal_bodytype) && (shelter[0] === info.shelter_name)) {
         results.push(info.animal_subid)
         flexTemplate.contents.contents.push({
           type: 'bubble',
@@ -224,6 +215,7 @@ bot.on('message', async (event) => {
       event.reply(flexTemplate)
       console.log(results)
       console.log(flexTemplate)
+      delete eventData[event.source.userId]
     }
   } catch (error) {
     console.log(error)
