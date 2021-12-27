@@ -18,11 +18,9 @@ bot.listen('/', process.env.PORT || 3000, () => {
 })
 
 const eventData = {}
-// const eventData = [{ userId: '', animalKind: '', animalSex: '', bodytype: '', shelter: '' }]
 
 bot.on('message', async (event) => {
-  // const userid = event.source.userId
-  console.log(event)
+  // console.log(event)
   // 1.使用者傳送搜尋物種
   if ((event.message.text === '貓') || (event.message.text === '狗')) {
     // 請使用者傳送位置
@@ -46,9 +44,11 @@ bot.on('message', async (event) => {
   // 3.使用者選擇性別後，請使用者選體型
   if ((event.message.text === '不限') || (event.message.text === 'M') || (event.message.text === 'F')) {
     event.reply(findBodytype)
+    eventData[event.source.userId].animalSex = event.message.text
   }
 
   if ((event.message.text === '都可以') || (event.message.text === 'BIG') || (event.message.text === 'MEDIUM') || (event.message.text === 'SMALL')) {
+    eventData[event.source.userId].bodytype = event.message.text
     console.log(eventData)
   }
   try {
@@ -56,7 +56,7 @@ bot.on('message', async (event) => {
     const results = []
     const { data } = await axios.get('https://data.coa.gov.tw/Service/OpenData/TransService.aspx?UnitId=QcbUEzN6E6DL')
     for (const info of data) {
-      if ((eventData[event.source.userId].animalKind === info.animal_kind) && (animalSex[0] === info.animal_sex) && (bodyType[0] === info.animal_bodytype) && (shelter[0] === info.shelter_name)) {
+      if ((eventData[event.source.userId].animalKind === info.animal_kind) && (eventData[event.source.userId].animalSex === info.animal_sex) && (eventData[event.source.userId].bodytype === info.animal_bodytype) && (eventData[event.source.userId].shelter === info.shelter_name)) {
         results.push(info.animal_subid)
         flexTemplate.contents.contents.push({
           type: 'bubble',
@@ -207,19 +207,21 @@ bot.on('message', async (event) => {
             }
           }
         })
-        if (results.length >= 12) {
+        if (results.length >= 5) {
           break
         }
       }
     } if (results.length > 0) {
       event.reply(flexTemplate)
       console.log(results)
-      console.log(flexTemplate)
+      // console.log(flexTemplate)
       delete eventData[event.source.userId]
+    } else {
+      event.reply('找不到')
     }
   } catch (error) {
     console.log(error)
-    event.reply('錯誤')
+    event.reply('OOPS錯誤')
   }
 }
 )
