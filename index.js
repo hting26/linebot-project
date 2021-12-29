@@ -6,7 +6,7 @@ import findBodytype from './commands/findBodytype.js'
 import findLocation from './commands/findLocation.js'
 import returnShelter from './returnShelter.js'
 import template from './template/flex.js'
-// import fs from 'fs'
+import fs from 'fs'
 
 const bot = linebot({
   channelId: process.env.CHANNEL_ID,
@@ -63,13 +63,9 @@ bot.on('message', async (event) => {
           size: 'kilo',
           hero: {
             type: 'image',
-            url: info.album_file,
+            url: info.album_file || 'https://images.unsplash.com/photo-1450778869180-41d0601e046e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1286&q=80',
             size: 'full',
             aspectMode: 'cover',
-            action: {
-              type: 'uri',
-              uri: info.album_file
-            },
             aspectRatio: '20:17'
           },
           body: {
@@ -78,9 +74,8 @@ bot.on('message', async (event) => {
             contents: [
               {
                 type: 'text',
-                text: `收容編號 ${info.animal_subid}`,
-                weight: 'bold',
-                size: 'md',
+                text: `收容編號 ${info.animal_subid}` || '-',
+                size: 'sm',
                 wrap: true
               },
               {
@@ -103,7 +98,7 @@ bot.on('message', async (event) => {
                       },
                       {
                         type: 'text',
-                        text: info.animal_sex,
+                        text: info.animal_sex || '-',
                         wrap: true,
                         color: '#666666',
                         size: 'sm',
@@ -125,7 +120,7 @@ bot.on('message', async (event) => {
                       },
                       {
                         type: 'text',
-                        text: info.animal_bodytype,
+                        text: info.animal_bodytype || '-',
                         wrap: true,
                         color: '#666666',
                         size: 'sm',
@@ -140,14 +135,14 @@ bot.on('message', async (event) => {
                     contents: [
                       {
                         type: 'text',
-                        text: '花色',
+                        text: '毛色',
                         color: '#aaaaaa',
                         size: 'sm',
                         flex: 1
                       },
                       {
                         type: 'text',
-                        text: info.animal_colour,
+                        text: info.animal_colour || '-',
                         wrap: true,
                         color: '#666666',
                         size: 'sm',
@@ -176,6 +171,28 @@ bot.on('message', async (event) => {
                         flex: 5
                       }
                     ]
+                  },
+                  {
+                    type: 'box',
+                    layout: 'baseline',
+                    spacing: 'sm',
+                    contents: [
+                      {
+                        type: 'text',
+                        text: '開放認養時間',
+                        color: '#aaaaaa',
+                        size: 'sm',
+                        flex: 4
+                      },
+                      {
+                        type: 'text',
+                        text: info.animal_opendate || '-',
+                        wrap: true,
+                        color: '#666666',
+                        size: 'sm',
+                        flex: 5
+                      }
+                    ]
                   }
                 ]
               }
@@ -192,7 +209,7 @@ bot.on('message', async (event) => {
                 style: 'primary',
                 action: {
                   type: 'uri',
-                  label: 'WEBSITE',
+                  label: '前往網站',
                   uri: encodeURI(`https://asms.coa.gov.tw/amlapp/App/AnnounceList.aspx?Id=${info.animal_id}&AcceptNum=${info.animal_subid}&PageType=Adopt`)
                 },
                 height: 'sm',
@@ -214,9 +231,9 @@ bot.on('message', async (event) => {
     }
     if (results.length > 0) {
       event.reply(flexTemplate)
-      // fs.writeFileSync('aaa.json', JSON.stringify(flexTemplate, null, 2))
+      fs.writeFileSync('aaa.json', JSON.stringify(flexTemplate, null, 2))
       console.log(results)
-      console.log(flexTemplate)
+      // console.log(flexTemplate)
       delete eventData[event.source.userId]
     } else {
       event.reply('找不到')
