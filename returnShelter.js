@@ -1,5 +1,5 @@
 import { shelterData } from './data/shelterData.js'
-import template from './template/flexTemplate.js'
+import flextemplate from './template/flexTemplate.js'
 import { distance } from './distance.js'
 
 export default (event) => {
@@ -8,8 +8,7 @@ export default (event) => {
 
   const minDistanceData = []
 
-  const shelterFlex = JSON.parse(JSON.stringify(template))
-  // const quickReply =
+  const shelterFlex = JSON.parse(JSON.stringify(flextemplate))
 
   for (let i = 0; i < shelterData.length; i++) {
     const Lon = shelterData[i].Lon

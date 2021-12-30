@@ -7,7 +7,7 @@ export default {
         type: 'action',
         action: {
           type: 'message',
-          label: '都可以❤',
+          label: '都可以🐈︎',
           text: '都可以'
         }
       },

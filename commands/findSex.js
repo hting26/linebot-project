@@ -7,7 +7,7 @@ export default {
         type: 'action',
         action: {
           type: 'message',
-          label: '不限❤',
+          label: '不限🐕',
           text: '不限'
         }
       },

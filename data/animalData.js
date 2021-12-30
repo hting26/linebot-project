@@ -14,5 +14,5 @@ const getanimalData = () => {
 // 機器人啟動時先更新資料
 getanimalData()
 
-// 設定排程每月20號 0:30 更新
+// 設定排程每天 1:00 更新
 schedule.scheduleJob('0 1 * * *', getanimalData)

@@ -6,7 +6,7 @@ import findBodytype from './commands/findBodytype.js'
 import findLocation from './commands/findLocation.js'
 import returnShelter from './returnShelter.js'
 import template from './template/flex.js'
-import fs from 'fs'
+// import fs from 'fs'
 
 const bot = linebot({
   channelId: process.env.CHANNEL_ID,
@@ -224,23 +224,22 @@ bot.on('message', async (event) => {
             }
           }
         })
-        if (results.length >= 5) {
+        if (results.length >= 12) {
           break
         }
       }
     }
     if (results.length > 0) {
       event.reply(flexTemplate)
-      fs.writeFileSync('aaa.json', JSON.stringify(flexTemplate, null, 2))
+      // fs.writeFileSync('aaa.json', JSON.stringify(flexTemplate, null, 2))
       console.log(results)
-      // console.log(flexTemplate)
       delete eventData[event.source.userId]
     } else {
-      event.reply('找不到')
+      event.reply('此搜尋條件找不到資料，試試其他的吧！')
     }
   } catch (error) {
     console.log(error)
-    event.reply('OOPS錯誤')
+    event.reply('錯誤')
   }
 }
 )
