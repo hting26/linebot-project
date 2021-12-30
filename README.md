@@ -1,5 +1,7 @@
 ## 認養汪喵-linebot
-● 機器人ID：@
+● 機器人ID：@485hxfcp
+
+![QR](./img/485hxfcp.png)
 
 ● 資料來源：[公立收容所資料](https://data.gov.tw/dataset/134284)、[動物認領養](https://data.gov.tw/dataset/85903)
 
