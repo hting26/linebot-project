@@ -25,7 +25,6 @@
 ⑤選擇動物體型後，機器人就開始搜尋囉，因資料較多，需稍等一下
 
 ![說明](./img/LINE_ALBUM_2.jpg)
-![說明](./img/LINE_ALBUM_3.jpg)
 ![說明](./img/LINE_ALBUM_4.jpg)
 ![說明](./img/LINE_ALBUM_5.jpg)
 ![說明](./img/LINE_ALBUM_6.jpg)
