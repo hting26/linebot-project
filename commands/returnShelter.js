@@ -1,6 +1,6 @@
-import { shelterData } from './data/shelterData.js'
-import flextemplate from './template/flexTemplate.js'
-import { distance } from './distance.js'
+import { shelterData } from '../data/shelterData.js'
+import flextemplate from '../template/flexTemplate.js'
+import { distance } from '../distance.js'
 
 export default (event) => {
   const myLatitude = event.message.latitude

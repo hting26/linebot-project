@@ -3,14 +3,14 @@ export default {
   text: '你想找的動物體型?',
   quickReply: {
     items: [
-      {
-        type: 'action',
-        action: {
-          type: 'message',
-          label: '都可以🐈︎',
-          text: '都可以'
-        }
-      },
+      // {
+      //   type: 'action',
+      //   action: {
+      //     type: 'message',
+      //     label: '都可以🐈︎',
+      //     text: '都可以'
+      //   }
+      // },
       {
         type: 'action',
         action: {

@@ -4,7 +4,7 @@ import axios from 'axios'
 import findSex from './commands/findSex.js'
 import findBodytype from './commands/findBodytype.js'
 import findLocation from './commands/findLocation.js'
-import returnShelter from './returnShelter.js'
+import returnShelter from './commands/returnShelter.js'
 import template from './template/flex.js'
 // import fs from 'fs'
 
@@ -12,10 +12,6 @@ const bot = linebot({
   channelId: process.env.CHANNEL_ID,
   channelSecret: process.env.CHANNEL_SECRET,
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
-})
-
-bot.listen('/', process.env.PORT || 3000, () => {
-  console.log('機器人啟動')
 })
 
 const eventData = {}
@@ -421,3 +417,7 @@ bot.on('message', async (event) => {
   }
 }
 )
+
+bot.listen('/', process.env.PORT || 3000, () => {
+  console.log('機器人啟動')
+})
