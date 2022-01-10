@@ -407,7 +407,7 @@ bot.on('message', async (event) => {
       event.reply(flexTemplate)
       // fs.writeFileSync('aaa.json', JSON.stringify(flexTemplate, null, 2))
       console.log(results)
-      // delete eventData[event.source.userId]
+      delete eventData[event.source.userId]
     } else {
       event.reply('此搜尋條件找不到資料，試試其他條件吧！')
     }
