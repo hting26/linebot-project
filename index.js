@@ -207,7 +207,7 @@ bot.on('message', async (event) => {
                   action: {
                     type: 'uri',
                     label: '前往網站',
-                    uri: encodeURI(`https://asms.coa.gov.tw/amlapp/App/AnnounceList.aspx?Id=${info.animal_id}&AcceptNum=${info.animal_subid}&PageType=Adopt`)
+                    uri: encodeURI(`https://asms.coa.gov.tw/amlapp/App/AnnounceList.aspx?Id=${info.animal_id}&AcceptNum=${info.animal_subid}&PageType=Adopt`) || 'https://asms.coa.gov.tw/Amlapp/App/AnnounceMent.aspx?PageType=Adopt'
                   },
                   height: 'sm',
                   color: '#b5927f'
