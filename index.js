@@ -38,13 +38,9 @@ bot.on('message', async (event) => {
   }
 
   // 3.使用者選擇性別後，請使用者選體型
-  if ((event.message.text === 'M') || (event.message.text === 'F')) {
+  if ((event.message.text === '不限') || (event.message.text === 'M') || (event.message.text === 'F')) {
     event.reply(findBodytype)
     eventData[event.source.userId].animalSex = event.message.text
-  }
-  // 如果性別不限
-  if (event.message.text === '不限') {
-    event.reply(findBodytype)
   }
   // 紀錄體型
   if ((event.message.text === '都可以') || (event.message.text === 'BIG') || (event.message.text === 'MEDIUM') || (event.message.text === 'SMALL')) {
@@ -56,7 +52,7 @@ bot.on('message', async (event) => {
     const results = []
     const { data } = await axios.get('https://data.coa.gov.tw/Service/OpenData/TransService.aspx?UnitId=QcbUEzN6E6DL')
     for (const info of data) {
-      if (eventData[event.source.userId].animalSex === '') {
+      if (eventData[event.source.userId].animalSex === '不限') {
         if ((eventData[event.source.userId]?.animalKind === info.animal_kind) && (eventData[event.source.userId]?.bodytype === info.animal_bodytype) && (eventData[event.source.userId]?.shelter === info.shelter_name)) {
           results.push(info.animal_subid)
           flexTemplate.contents.contents.push({
