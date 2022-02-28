@@ -399,7 +399,6 @@ bot.on('message', async (event) => {
       }
     }
     if (results.length > 0) {
-      event.reply()
       event.reply(flexTemplate)
       // fs.writeFileSync('aaa.json', JSON.stringify(flexTemplate, null, 2))
       console.log(results)
