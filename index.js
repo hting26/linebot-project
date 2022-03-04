@@ -117,7 +117,7 @@ bot.on('message', async (event) => {
                         },
                         {
                           type: 'text',
-                          text: info.animal_bodytype || '-',
+                          text: info.animal_bodytype === 'BIG' ? '大' : info.animal_bodytype === 'MEDIUM' ? '中' : '小',
                           wrap: true,
                           color: '#666666',
                           size: 'sm',
