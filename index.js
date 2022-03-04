@@ -95,7 +95,7 @@ bot.on('message', async (event) => {
                         },
                         {
                           type: 'text',
-                          text: info.animal_sex || '-',
+                          text: info.animal_sex === 'M' ? '公' : 'F',
                           wrap: true,
                           color: '#666666',
                           size: 'sm',
